@@ -1,4 +1,3 @@
-
 # training name
 name: 'jaffle_shop'
 version: '1.0.0'
@@ -32,6 +31,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 ### multiple related models in different schemas in redshift                ###
 models:
   jaffle_shop:
-      # Applies to all files under models/example/
+      # Applies to all files under models/example, DBT will always do views by default
       example:
           materialized: view
