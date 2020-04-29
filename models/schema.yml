@@ -1,5 +1,6 @@
 version: 2
 models:
+
 ##### FULLY TRANSFORMED #####
   - name: fct_customers
     columns:
@@ -10,10 +11,16 @@ models:
 
   - name: fct_orders
     columns:
-      - name: customer_id
+      - name: order_id
         tests:
           - unique
           - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_customers')
+              field: customer_id
 
 ##### STAGING #####
   - name: stg_customers
