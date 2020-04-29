@@ -3,6 +3,7 @@ models:
 
 ##### FULLY TRANSFORMED #####
   - name: fct_customers
+    description: transformed customer dimensions and key measures
     columns:
       - name: customer_id
         tests:
@@ -10,6 +11,7 @@ models:
           - not_null
 
   - name: fct_orders
+    description: transformed orders and associated payments
     columns:
       - name: order_id
         tests:
@@ -24,6 +26,7 @@ models:
 
 ##### STAGING #####
   - name: stg_customers
+    description: staged customer data from jaffle_shop
     columns:
       - name: customer_id
         tests:
@@ -31,12 +34,14 @@ models:
           - not_null
 
   - name: stg_orders
+    description: staged order data from jaffle_shop
     columns:
       - name: order_id
         tests:
           - unique
           - not_null
       - name: status
+        description: '{{ doc("order_status") }}'
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
@@ -48,6 +53,7 @@ models:
               field: customer_id
 
   - name: stg_payments
+    description: staged payment data from stripe
     columns:
       - name: order_id
         tests:
